@@ -89,6 +89,16 @@ public class TareaController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerTareaPorId(@PathVariable Long id) {
+        try {
+            TareaResponse tarea = tareaService.obtenerTareaPorId(id);
+            return ResponseEntity.ok(tarea);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping("/estado/{estado}")
     public ResponseEntity<?> obtenerTareasPorEstado(
             @RequestHeader("Authorization") String authHeader,

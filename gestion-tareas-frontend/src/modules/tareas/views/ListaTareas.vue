@@ -30,7 +30,6 @@
             <button v-if="tarea.estado !== 'COMPLETADA'" class="btn-completar" @click="completar(tarea.idTarea)">
               ✅ Completar
             </button>
-            <button class="btn-editar" @click="editar(tarea.idTarea)">✏️ Editar</button>
             <button class="btn-eliminar" @click="eliminar(tarea.idTarea)">🗑️ Eliminar</button>
           </div>
         </div>
@@ -94,10 +93,6 @@ const eliminar = async (id) => {
   }
 };
 
-const editar = (id) => {
-  router.push(`/tareas/${id}/editar`);
-};
-
 const limpiarFiltro = () => {
   router.push('/tareas');
 };
@@ -148,25 +143,6 @@ onMounted(() => {
   font-size: 13px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(17, 153, 142, 0.3);
-}
-
-/* Botón Editar */
-.btn-editar {
-  background: linear-gradient(135deg, #2980b9 0%, #6dd5fa 100%);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 13px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(41, 128, 185, 0.3);
-}
-
-.btn-editar:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(41, 128, 185, 0.4);
 }
 
 .btn-completar:hover {

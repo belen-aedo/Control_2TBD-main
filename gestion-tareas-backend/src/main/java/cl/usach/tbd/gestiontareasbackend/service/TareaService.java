@@ -89,6 +89,12 @@ public class TareaService {
                 .collect(Collectors.toList());
     }
 
+    public TareaResponse obtenerTareaPorId(Long idTarea) {
+        Tarea tarea = tareaRepository.findById(idTarea)
+                .orElseThrow(() -> new RuntimeException("Tarea no encontrada"));
+        return convertirATareaResponse(tarea);
+    }
+
     public List<TareaResponse> obtenerTareasPorEstado(Long idUsuario, String estado) {
         return tareaRepository.findByUsuarioIdUsuarioAndEstado(idUsuario, estado)
                 .stream()
