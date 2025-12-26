@@ -18,7 +18,7 @@ Sistema completo de gestión de tareas con análisis geoespacial desarrollado co
 | 🔍 **Filtros y Búsqueda** | ⚠️ 75% | Backend 100%, Frontend 30% |
 | 🔔 **Notificaciones** | ❌ 0% | No implementado |
 | 🧪 **Tests** | ⚠️ 20% | Cobertura básica |
-| 🚀 **Despliegue** | ❌ 0% | Local únicamente |
+| 🚀 **Despliegue** | ✅ 0% | Despliegue local |
 
 ### 🏆 Consultas Geoespaciales (PostGIS) - 9/9 Implementadas
 
