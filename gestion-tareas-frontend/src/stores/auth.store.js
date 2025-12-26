@@ -17,8 +17,6 @@ export const useAuthStore = defineStore('auth', () => {
         usuario.value = null;
         localStorage.removeItem('token');
         localStorage.removeItem('usuario');
-        // Redirigir al login
-        window.location.href = '/login';
     }
 
     return { token, usuario, setAuth, logout };

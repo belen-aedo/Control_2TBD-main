@@ -16,12 +16,23 @@
         </div>
 
         <div class="input-group">
-          <input
-              v-model="contrasena"
-              type="password"
-              placeholder="Ingresa tu contraseña"
-              required
-          />
+          <div class="password-wrapper">
+            <input
+                v-model="contrasena"
+                :type="mostrarContrasena ? 'text' : 'password'"
+                placeholder="Ingresa tu contraseña"
+                required
+            />
+            <button
+                type="button"
+                class="toggle-password"
+                @click="mostrarContrasena = !mostrarContrasena"
+                :aria-label="mostrarContrasena ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+            >
+              <span v-if="mostrarContrasena">🙉</span>
+              <span v-else>🙈</span>
+            </button>
+          </div>
         </div>
 
         <div class="remember-me">
@@ -51,6 +62,7 @@ import { useRouter } from 'vue-router';
 
 const nombreUsuario = ref('');
 const contrasena = ref('');
+const mostrarContrasena = ref(false);
 const authStore = useAuthStore();
 const router = useRouter();
 
@@ -111,6 +123,12 @@ const handleLogin = async () => {
   margin-bottom: 20px;
 }
 
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .input-group input {
   width: 100%;
   padding: 15px 20px;
@@ -121,6 +139,27 @@ const handleLogin = async () => {
   font-size: 14px;
   transition: all 0.3s ease;
   box-sizing: border-box;
+}
+
+.password-wrapper input {
+  padding-right: 55px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  opacity: 0.8;
 }
 
 .input-group input::placeholder {

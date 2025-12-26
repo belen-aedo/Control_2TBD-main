@@ -29,14 +29,19 @@
       </div>
 
       <div class="nav-actions">
-        <div class="user-menu" @click="toggleUserMenu">
+        <div class="user-menu" @click.stop="toggleUserMenu">
           <div class="user-avatar">{{ iniciales }}</div>
           <span class="user-name">{{ nombreUsuario }}</span>
           <span class="dropdown-icon" :class="{ open: showUserMenu }">▼</span>
         </div>
 
         <transition name="dropdown">
-          <div v-if="showUserMenu" class="user-dropdown" v-click-outside="cerrarUserMenu">
+          <div
+              v-if="showUserMenu"
+              class="user-dropdown"
+              v-click-outside="cerrarUserMenu"
+              @click.stop
+          >
             <div class="user-info">
               <div class="user-avatar-large">{{ iniciales }}</div>
               <div>
@@ -70,22 +75,15 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
+import { useAuthStore } from '@/stores/auth.store';
 
 const router = useRouter();
 const menuActive = ref(false);
 const showUserMenu = ref(false);
+const authStore = useAuthStore();
+const { usuario } = storeToRefs(authStore);
 
-// Obtener información del usuario desde localStorage
-const obtenerUsuario = () => {
-  try {
-    const usuarioStr = localStorage.getItem('usuario');
-    return usuarioStr ? JSON.parse(usuarioStr) : null;
-  } catch (e) {
-    return null;
-  }
-};
-
-const usuario = computed(() => obtenerUsuario());
 const nombreUsuario = computed(() => usuario.value?.nombreUsuario || 'Usuario');
 
 const iniciales = computed(() => {
@@ -118,14 +116,8 @@ const irAInicio = () => {
 };
 
 const cerrarSesion = () => {
-  if (confirm('¿Estás seguro de cerrar sesión?')) {
-    // Limpiar localStorage
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario');
-
-    // Redirigir al login
-    router.push('/login');
-  }
+  authStore.logout();
+  router.push('/login');
   cerrarUserMenu();
 };
 
