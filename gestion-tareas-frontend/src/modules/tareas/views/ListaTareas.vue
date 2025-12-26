@@ -16,22 +16,23 @@
 
       <div v-else class="grid">
         <div v-for="tarea in tareasFiltradas" :key="tarea.idTarea" class="card task-card">
-        <div class="task-header">
-          <h3>{{ tarea.titulo }}</h3>
-          <span :class="['badge', tarea.estado === 'COMPLETADA' ? 'done' : 'pending']">
-            {{ tarea.estado }}
-          </span>
-        </div>
-        <p>{{ tarea.descripcion }}</p>
-        <p><small>🗓️ Vence: {{ tarea.fechaVencimiento }}</small></p>
-        <p><small>🏢 Sector: {{ tarea.nombreSector }}</small></p>
+          <div class="task-header">
+            <h3>{{ tarea.titulo }}</h3>
+            <span :class="['badge', tarea.estado === 'COMPLETADA' ? 'done' : 'pending']">
+              {{ tarea.estado }}
+            </span>
+          </div>
+          <p>{{ tarea.descripcion }}</p>
+          <p><small>🗓️ Vence: {{ tarea.fechaVencimiento }}</small></p>
+          <p><small>🏢 Sector: {{ tarea.nombreSector }}</small></p>
 
-        <div class="actions">
-          <button v-if="tarea.estado !== 'COMPLETADA'" class="btn-completar" @click="completar(tarea.idTarea)">
-            ✅ Completar
-          </button>
-          <button class="btn-editar" @click="editar(tarea.idTarea)">✏️ Editar</button>
-          <button class="btn-eliminar" @click="eliminar(tarea.idTarea)">🗑️ Eliminar</button>
+          <div class="actions">
+            <button v-if="tarea.estado !== 'COMPLETADA'" class="btn-completar" @click="completar(tarea.idTarea)">
+              ✅ Completar
+            </button>
+            <button class="btn-editar" @click="editar(tarea.idTarea)">✏️ Editar</button>
+            <button class="btn-eliminar" @click="eliminar(tarea.idTarea)">🗑️ Eliminar</button>
+          </div>
         </div>
       </div>
     </div>
