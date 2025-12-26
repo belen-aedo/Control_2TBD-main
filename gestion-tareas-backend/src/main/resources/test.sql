@@ -63,7 +63,12 @@ INSERT INTO sector (nombre, ubicacion_espacial) VALUES
     ('Providencia', ST_SetSRID(ST_MakePoint(-70.6170, -33.4320), 4326)),
     ('Las Condes', ST_SetSRID(ST_MakePoint(-70.5800, -33.4100), 4326));
 
--- Insertar Usuario "admin" con contraseña "1234"
+
+-- admin      / 1234
+-- supervisor / 1234
+-- operador1  / 1234
+-- operador2  / 1234
+-- analista   / 1234
 -- Ubicación: Centro de Santiago
 INSERT INTO usuario (nombre_usuario, contrasena, ubicacion_geografica) VALUES
     ('admin', '$2a$12$Ndl.ZNvI1pvrJNWPNUUQEOnj.QUy7U5HN9jk1U7MPA.eYSg1BjkrW', ST_SetSRID(ST_MakePoint(-70.6500, -33.4500), 4326)),

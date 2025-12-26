@@ -1,14 +1,55 @@
 <script setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, onMounted, onBeforeUnmount } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth.store';
 import Navbar from '@/modules/core/components/Navbar.vue';
 
 const route = useRoute();
+const router = useRouter();
+const authStore = useAuthStore();
+const INACTIVITY_LIMIT_MS = 10 * 60 * 1000; // 10 minutos
+let inactivityTimer = null;
 
 // Mostrar navbar solo si NO estamos en login o registro
 const mostrarNavbar = computed(() => {
   const rutasSinNavbar = ['login', 'registro', 'Login', 'Registro'];
   return !rutasSinNavbar.includes(route.name);
+});
+
+const clearInactivity = () => {
+  if (inactivityTimer) {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = null;
+  }
+};
+
+const scheduleLogout = () => {
+  clearInactivity();
+  if (!authStore.token) return;
+  inactivityTimer = setTimeout(() => {
+    authStore.logout();
+    router.push('/login');
+    alert('Sesión cerrada por inactividad (10 minutos).');
+  }, INACTIVITY_LIMIT_MS);
+};
+
+const onActivity = () => {
+  scheduleLogout();
+};
+
+onMounted(() => {
+  const events = ['click', 'mousemove', 'keydown', 'scroll', 'touchstart'];
+  events.forEach(evt => window.addEventListener(evt, onActivity));
+  scheduleLogout();
+
+  // Reset al cambiar de ruta
+  router.afterEach(() => scheduleLogout());
+});
+
+onBeforeUnmount(() => {
+  const events = ['click', 'mousemove', 'keydown', 'scroll', 'touchstart'];
+  events.forEach(evt => window.removeEventListener(evt, onActivity));
+  clearInactivity();
 });
 </script>
 

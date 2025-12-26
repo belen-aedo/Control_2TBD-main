@@ -7,6 +7,9 @@ export default {
     crear(tarea) {
         return apiClient.post('/tareas', tarea);
     },
+    obtenerPorId(id) {
+        return apiClient.get(`/tareas/${id}`);
+    },
     actualizar(id, tarea) {
         return apiClient.put(`/tareas/${id}`, tarea);
     },

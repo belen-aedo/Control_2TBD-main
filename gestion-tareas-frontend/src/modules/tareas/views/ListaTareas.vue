@@ -6,8 +6,16 @@
 
     <div v-if="loading">Cargando tareas...</div>
 
-    <div v-else class="grid">
-      <div v-for="tarea in tareas" :key="tarea.idTarea" class="card task-card">
+    <div v-else>
+      <div v-if="filtroSector" class="filter-pill">
+        <span>Filtrando por sector: <strong>{{ filtroSector }}</strong></span>
+        <button class="btn-clear" @click="limpiarFiltro">✕</button>
+      </div>
+
+      <div v-if="tareasFiltradas.length === 0" class="empty">No hay tareas para este sector.</div>
+
+      <div v-else class="grid">
+        <div v-for="tarea in tareasFiltradas" :key="tarea.idTarea" class="card task-card">
         <div class="task-header">
           <h3>{{ tarea.titulo }}</h3>
           <span :class="['badge', tarea.estado === 'COMPLETADA' ? 'done' : 'pending']">
@@ -22,6 +30,7 @@
           <button v-if="tarea.estado !== 'COMPLETADA'" class="btn-completar" @click="completar(tarea.idTarea)">
             ✅ Completar
           </button>
+          <button class="btn-editar" @click="editar(tarea.idTarea)">✏️ Editar</button>
           <button class="btn-eliminar" @click="eliminar(tarea.idTarea)">🗑️ Eliminar</button>
         </div>
       </div>
@@ -30,11 +39,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import tareasService from '../api/tareas.service';
+import { useRouter, useRoute } from 'vue-router';
 
 const tareas = ref([]);
 const loading = ref(true);
+const router = useRouter();
+const route = useRoute();
+
+const filtroSector = computed(() => route.query.sector || '');
+
+const tareasFiltradas = computed(() => {
+  const filtro = filtroSector.value.toLowerCase();
+  if (!filtro) return tareas.value;
+  return tareas.value.filter(t => t.nombreSector?.toLowerCase() === filtro);
+});
 
 const cargarTareas = async () => {
   loading.value = true;
@@ -71,6 +91,14 @@ const eliminar = async (id) => {
     console.error('Error al eliminar tarea:', e);
     alert('Error al eliminar la tarea. Por favor, intenta de nuevo.');
   }
+};
+
+const editar = (id) => {
+  router.push(`/tareas/${id}/editar`);
+};
+
+const limpiarFiltro = () => {
+  router.push('/tareas');
 };
 
 onMounted(() => {
@@ -121,6 +149,25 @@ onMounted(() => {
   box-shadow: 0 2px 8px rgba(17, 153, 142, 0.3);
 }
 
+/* Botón Editar */
+.btn-editar {
+  background: linear-gradient(135deg, #2980b9 0%, #6dd5fa 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(41, 128, 185, 0.3);
+}
+
+.btn-editar:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(41, 128, 185, 0.4);
+}
+
 .btn-completar:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(17, 153, 142, 0.4);
@@ -143,5 +190,33 @@ onMounted(() => {
 .btn-eliminar:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(235, 51, 73, 0.4);
+}
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  padding: 10px 14px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.btn-clear {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.empty {
+  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-secondary);
 }
 </style>

@@ -69,6 +69,7 @@
               :key="item.nombreSector"
               class="sector-card"
               :style="{ animationDelay: `${index * 0.1}s` }"
+              @click="verSector(item.nombreSector)"
           >
             <div class="sector-header">
               <div class="sector-icon">{{ getSectorIcon(item.nombreSector) }}</div>
@@ -155,9 +156,11 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import analisisService from '../api/analisis.service';
 
 const loading = ref(true);
+const router = useRouter();
 const promedioDistancia = ref(0);
 const totalCompletadas = ref(0);
 const tareaCercana = ref(null);
@@ -329,6 +332,10 @@ const getSectorIcon = (nombreSector) => {
 
   const key = nombreSector.toLowerCase();
   return iconos[key] || iconos.default;
+};
+
+const verSector = (nombreSector) => {
+  router.push({ path: '/tareas', query: { sector: nombreSector } });
 };
 
 const formatearFecha = (fecha) => {
@@ -575,8 +582,15 @@ const formatearFecha = (fecha) => {
   border-radius: 10px;
 }
 
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 .sector-info h4 {
   font-size: 16px;
+.sector-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
   margin: 0 0 4px 0;
   color: var(--text-primary);
 }
