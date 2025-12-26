@@ -87,4 +87,37 @@ INSERT INTO tarea (titulo, descripcion, fecha_vencimiento, estado, id_usuario, i
     ('Instalación de señalética', 'Colocar señales de tránsito', '2025-12-05', 'COMPLETADA', 1, 7),
     ('Revisión de infraestructura', 'Inspección general', '2025-12-03', 'COMPLETADA', 1, 1),
     ('Mantenimiento de plazas', 'Pintura de bancas', '2025-12-01', 'COMPLETADA', 1, 2),
-    ('Control de ruido', 'Medición de contaminación acústica', '2025-11-28', 'COMPLETADA', 1, 8);
+    ('Control de ruido', 'Medición de contaminación acústica', '2025-11-28', 'COMPLETADA', 1, 8),
+
+    -- Tareas ADMIN adicionales - EN PROCESO
+    ('Actualización de sistema', 'Migración a nueva versión', '2026-01-08', 'EN_PROCESO', 1, 1),
+    ('Inspección de equipos', 'Revisión técnica semestral', '2026-01-12', 'EN_PROCESO', 1, 4),
+    ('Control de calidad', 'Auditoría de procedimientos', '2026-01-06', 'EN_PROCESO', 1, 7),
+    
+    -- Tareas ADMIN adicionales - PENDIENTES
+    ('Planificación trimestre 1', 'Definir objetivos Q1 2026', '2026-01-20', 'PENDIENTE', 1, 1),
+    ('Revisión de contratos', 'Renovación de servicios', '2026-01-25', 'PENDIENTE', 1, 2),
+    ('Mantenimiento preventivo', 'Chequeo de infraestructura crítica', '2026-01-18', 'PENDIENTE', 1, 5),
+    ('Capacitación de personal', 'Workshop de nuevas tecnologías', '2026-02-01', 'PENDIENTE', 1, 1),
+    ('Auditoría de seguridad', 'Revisión de protocolos', '2026-01-22', 'PENDIENTE', 1, 4),
+    ('Gestión de inventario', 'Actualizar stock de materiales', '2026-01-16', 'PENDIENTE', 1, 3),
+    ('Reporte mensual', 'Consolidar métricas diciembre', '2026-01-05', 'PENDIENTE', 1, 1),
+    ('Coordinación interáreas', 'Reunión de seguimiento', '2026-01-14', 'PENDIENTE', 1, 7),
+    ('Evaluación de proveedores', 'Análisis de desempeño 2025', '2026-01-28', 'PENDIENTE', 1, 2),
+    ('Implementación de mejoras', 'Optimización de procesos', '2026-02-05', 'PENDIENTE', 1, 6),
+    ('Revisión presupuestaria', 'Ajustes de presupuesto anual', '2026-01-30', 'PENDIENTE', 1, 1),
+    ('Control de documentación', 'Organizar archivos del año', '2026-01-19', 'PENDIENTE', 1, 8),
+    ('Planificación de recursos', 'Asignación de personal Q1', '2026-01-23', 'PENDIENTE', 1, 5),
+    ('Revisión de KPIs', 'Análisis de indicadores clave', '2026-01-11', 'PENDIENTE', 1, 1),
+    ('Mantenimiento de vehículos', 'Servicio técnico programado', '2026-01-17', 'PENDIENTE', 1, 3),
+    
+    -- Tareas ADMIN adicionales - COMPLETADAS
+    ('Cierre año fiscal', 'Consolidación de reportes 2025', '2025-12-22', 'COMPLETADA', 1, 1),
+    ('Evaluación anual', 'Revisión de objetivos cumplidos', '2025-12-19', 'COMPLETADA', 1, 1),
+    ('Inventario anual', 'Conteo físico de activos', '2025-12-16', 'COMPLETADA', 1, 3),
+    ('Reunión de cierre', 'Balance del año con equipo', '2025-12-23', 'COMPLETADA', 1, 2),
+    ('Actualización de licencias', 'Renovación de software', '2025-12-14', 'COMPLETADA', 1, 4),
+    
+    -- Tareas ADMIN adicionales - VENCIDAS
+    ('Reporte urgente gerencia', 'Informe trimestral atrasado', '2025-12-20', 'VENCIDA', 1, 1),
+    ('Inspección de seguridad', 'Revisión pendiente desde noviembre', '2025-12-15', 'VENCIDA', 1, 5);

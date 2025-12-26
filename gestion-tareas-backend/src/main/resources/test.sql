@@ -68,11 +68,11 @@ INSERT INTO sector (nombre, ubicacion_espacial) VALUES
 --
 -- Ubicación: Centro de Santiago
 INSERT INTO usuario (nombre_usuario, contrasena, ubicacion_geografica) VALUES
-    ('admin', '$2a$12$Ndl.ZNvI1pvrJNWPNUUQEOnj.QUy7U5HN9jk1U7MPA.eYSg1BjkrW', ST_SetSRID(ST_MakePoint(-70.6500, -33.4500), 4326)),
-    ('supervisor', '$2a$12$Ndl.ZNvI1pvrJNWPNUUQEOnj.QUy7U5HN9jk1U7MPA.eYSg1BjkrW', ST_SetSRID(ST_MakePoint(-70.6200, -33.4300), 4326)),
-    ('operador1', '$2a$12$Ndl.ZNvI1pvrJNWPNUUQEOnj.QUy7U5HN9jk1U7MPA.eYSg1BjkrW', ST_SetSRID(ST_MakePoint(-70.6800, -33.4700), 4326)),
-    ('operador2', '$2a$12$Ndl.ZNvI1pvrJNWPNUUQEOnj.QUy7U5HN9jk1U7MPA.eYSg1BjkrW', ST_SetSRID(ST_MakePoint(-70.5900, -33.4000), 4326)),
-    ('analista', '$2a$12$Ndl.ZNvI1pvrJNWPNUUQEOnj.QUy7U5HN9jk1U7MPA.eYSg1BjkrW', ST_SetSRID(ST_MakePoint(-70.6400, -33.5200), 4326));
+    ('admin', '$2a$10$rA.8tYcBGaJ3aDtf2Cs.BOQ/IiQnlUVZdmdTkxCPAVVMBNbJsWCfi', ST_SetSRID(ST_MakePoint(-70.6500, -33.4500), 4326)),
+    ('supervisor', '$2a$10$rA.8tYcBGaJ3aDtf2Cs.BOQ/IiQnlUVZdmdTkxCPAVVMBNbJsWCfi', ST_SetSRID(ST_MakePoint(-70.6200, -33.4300), 4326)),
+    ('operador1', '$2a$10$rA.8tYcBGaJ3aDtf2Cs.BOQ/IiQnlUVZdmdTkxCPAVVMBNbJsWCfi', ST_SetSRID(ST_MakePoint(-70.6800, -33.4700), 4326)),
+    ('operador2', '$2a$10$rA.8tYcBGaJ3aDtf2Cs.BOQ/IiQnlUVZdmdTkxCPAVVMBNbJsWCfi', ST_SetSRID(ST_MakePoint(-70.5900, -33.4000), 4326)),
+    ('analista', '$2a$10$rA.8tYcBGaJ3aDtf2Cs.BOQ/IiQnlUVZdmdTkxCPAVVMBNbJsWCfi', ST_SetSRID(ST_MakePoint(-70.6400, -33.5200), 4326));
 
 -- Insertar Tareas de ejemplo con diferentes estados y sectores
 INSERT INTO tarea (titulo, descripcion, fecha_vencimiento, estado, id_usuario, id_sector) VALUES

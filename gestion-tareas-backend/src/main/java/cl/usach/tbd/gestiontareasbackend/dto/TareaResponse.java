@@ -18,4 +18,5 @@ public class TareaResponse {
     private String nombreUsuario;
     private Long idSector;
     private String nombreSector;
+    private Double distancia; // Distancia en km desde el usuario al sector
 }
