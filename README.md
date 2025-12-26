@@ -435,6 +435,15 @@ npm run dev
 
 # Frontend disponible en: http://localhost:5173
 ```
+### Despliegue localmente
+```
+# Terminal Backend
+ mvn clean package
+
+# Terminal general 
+ docker compose down      
+ docker compose up --build
+```
 
 ### 4️⃣ Credenciales de Prueba
 
